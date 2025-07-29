@@ -36,7 +36,20 @@ a {
   color: #333;
   font-size: 18px;
 }
-
+.hamburger {
+  display: none;
+  /* 
+     평소에는 숨기기 ~
+    display: block; -> 460 때 설정
+    
+    */
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
 .nav {
   display: flex;
   justify-content: center;
@@ -253,21 +266,14 @@ input select textarea 태그에
   background-color: #5a6268;
 }
 
-/***** 맛집가이드 각 메뉴 사세 페이지 스타일 *****/
+/***** 맛집가이드 각 메뉴 상세 페이지 스타일 *****/
 .menu-detail {
-  max-width: 800px; /* 0 부터 800 px 가로 너비*/
-  margin: 0 auto; /* 상하 0 좌우 자동 여백 주*/
+  max-width: 800px; /* 0 부터 800 px 가로 너비 제한*/
+  margin: 0 auto; /* 상하 0 좌우 자동 여백 주기  */
   padding: 20px;
 }
 
 .menu-detail .menu-img {
-  /*
-배경색 실선 - 그라디언트
-135 도 #ffe0b2 100% 준다.
-패딩 상하좌우 30px
-모서리 테두리 15px
-실선 2px solid #ffcc02
-여백- 아래 30px*/
   background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
   padding: 30px;
   border-radius: 15px;
@@ -303,15 +309,10 @@ input select textarea 태그에
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  margin-bottom: 30px;
 }
 .재료아이템 {
   background-color: #4caf50;
-  /*
-글자색 : 흰색
-패딩 상하 : 8px 16px
-모서리 20px
-박스 그림자 오른쪽 이동없음 아래로 2px이동, 번짐효과 4px rgba(검정기준 0.2 만큼 불투명하게 설정)
-*/
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
@@ -321,11 +322,7 @@ input select textarea 태그에
 .order-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /*
-  그리드 템플릿 컬럼즈를 이용해서 반복 3개씩 정렬 반복 1fr 간격만큼 설정
-  갭사이즈 20*/
 }
-
 .order-item {
   background-color: white;
   padding: 20px;
@@ -334,13 +331,23 @@ input select textarea 태그에
   text-align: center;
 }
 
-.order-item:p {
-  color: #ff6b6b;
-  font-size: 1.5rem;
+.order-item:hover {
+  border-color: #ff6b6b;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* 태블릿 반응형 768 px*/
+.order-item strong {
+  display: block;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.order-item p {
+  color: #ff6b6b;
+  font-size: 1.5rem; /* 24px */
+}
+
+/* 태블릿 반응형 768 px */
 @media (max-width: 768px) {
   .container {
     /* 가로스크롤 안생기게
@@ -348,13 +355,12 @@ input select textarea 태그에
     */
     width: 100%;
     padding: 0px;
-    margin: px;
+    margin: 0;
   }
 
   h1 {
     font-size: 32px;
   }
-
   .nav {
     flex-wrap: wrap;
     gap: 10px;
@@ -380,6 +386,11 @@ input select textarea 태그에
     width: 100%;
     margin: 10px 0;
   }
+
+  .order-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 /* 모바일 반응형 460 px*/
 @media (max-width: 460px) {
@@ -393,24 +404,21 @@ input select textarea 태그에
   }
 
   h1 {
-    font-size: 29px;
+    font-size: 20px;
   }
+  /*  네비게이션을 모바일에서 확인했을 때 토글형태로 확인할 수 있다.  */
   .hamburger {
     display: block;
   }
-    /* display: none;
-  border: none;
-  font-size: 30px
-  cursor: pointer;
-*/
-  
-}
+
   .nav {
-    display: c;
     flex-direction: column;
     align-items: center;
+    display: none;
   }
-
+  .nav.show {
+    display: flex;
+  }
   .nav a {
     width: 80%;
     text-align: center;
@@ -428,6 +436,14 @@ input select textarea 태그에
 
   .sign-container button {
     padding: 15px;
+  }
+
+  .재료리스트 {
+    gap: 8px;
+  }
+  .재료아이템 {
+    padding: 6px 12px;
+    font-size: 10px;
   }
 }
 
